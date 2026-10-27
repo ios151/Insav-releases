@@ -105,14 +105,51 @@
     done(ok);
   });
 
-  // 版本信息和下载地址读订阅源本身（和商店里看到的是同一份），读不到就保持页面里写死的「最新版」链接
-  fetch("altsource.json", { cache: "no-store" })
-    .then(function (response) { return response.json(); })
-    .then(function (json) {
-      var versions = json.apps[0].versions;
+  // 版本信息和下载地址：优先直接读 GitHub 的 Releases（发布完一分钟内就是最新的，不用等订阅源更新、也不用等 Pages 重新部署），
+  // 读不到（限流 / 网络）就退回读订阅源 altsource.json（和商店里看到的是同一份），再读不到就保持页面里写死的「最新版」链接。
+  // 从 Release 里取版本的规则要和 scripts/update-altsource.mjs 保持一致：tag 形如 v1.0.0-2、附件 Insav-unsigned.ipa，草稿 / 预发布不算
+  var RELEASES_API = "https://api.github.com/repos/ios151/Insav-releases/releases?per_page=12";
+
+  function versionsFromReleases(releases) {
+    var out = [];
+    releases.forEach(function (release) {
+      if (release.draft || release.prerelease) return;
+      var match = /^v(\d+(?:\.\d+)*)-(\d+)$/.exec(release.tag_name || "");
+      var asset = (release.assets || []).filter(function (item) { return item.name === "Insav-unsigned.ipa" && item.state === "uploaded"; })[0];
+      if (!match || !asset) return;
+      var notes = String(release.body || "").split(/\r?\n/)
+        .filter(function (line) { return /^\s*[-*]\s+/.test(line); })
+        .map(function (line) { return "• " + line.replace(/^\s*[-*]\s+/, "").trim(); })
+        .join("\n");
+      out.push({ version: match[1], buildVersion: match[2], date: release.published_at || release.created_at, localizedDescription: notes, downloadURL: asset.browser_download_url, size: asset.size, minOSVersion: "16.0" });
+    });
+    out.sort(function (a, b) { return Date.parse(b.date) - Date.parse(a.date); });
+    return out;
+  }
+
+  function loadVersions() {
+    return fetch(RELEASES_API, { cache: "no-store" })
+      .then(function (response) { if (!response.ok) throw new Error("api " + response.status); return response.json(); })
+      .then(function (releases) {
+        var versions = versionsFromReleases(releases);
+        if (!versions.length) throw new Error("no releases");
+        return { source: "releases", versions: versions };
+      })
+      .catch(function () {
+        return fetch("altsource.json", { cache: "no-store" })
+          .then(function (response) { return response.json(); })
+          .then(function (json) { return { source: "altsource", versions: json.apps[0].versions }; });
+      });
+  }
+
+  loadVersions()
+    .then(function (result) {
+      var versions = result.versions;
       var latest = versions[0];
       var mb = (latest.size / 1048576).toFixed(1);
-      byId("version").textContent = "最新版 " + latest.version + "（build " + latest.buildVersion + "）· " + mb + " MB · " + String(latest.date).slice(0, 10) + " · iOS " + (latest.minOSVersion || "16.0") + "+";
+      var line = byId("version");
+      line.dataset.source = result.source;
+      line.textContent = "最新版 " + latest.version + "（build " + latest.buildVersion + "）· " + mb + " MB · " + String(latest.date).slice(0, 10) + " · iOS " + (latest.minOSVersion || "16.0") + "+";
       byId("lcsign").href = "loadcontroller://import?url=" + latest.downloadURL + "&name=Insav-" + latest.version + "-" + latest.buildVersion + ".ipa";
       byId("ipa").href = latest.downloadURL;
       var list = byId("history");
