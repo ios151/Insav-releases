@@ -1,0 +1,51 @@
+{
+  "name": "INSAV",
+  "identifier": "com.ios151.insav.source",
+  "sourceURL": "https://raw.githubusercontent.com/ios151/Insav-releases/main/altsource.json",
+  "subtitle": "INSAV 原生 iOS 客户端的订阅源",
+  "description": "INSAV（insav 的第三方原生 iOS 客户端）的订阅源：添加后可以在 SideStore / AltStore 里安装和更新。安装包是未签名的，由商店用你自己的 Apple ID 签名。",
+  "iconURL": "https://raw.githubusercontent.com/ios151/Insav-releases/main/icon.png",
+  "website": "https://ios151.github.io/Insav-releases/",
+  "tintColor": "#E11D48",
+  "nsfw": true,
+  "featuredApps": [
+    "com.ios151.insav"
+  ],
+  "apps": [
+    {
+      "name": "INSAV",
+      "bundleIdentifier": "com.ios151.insav",
+      "developerName": "ios151",
+      "subtitle": "insav 原生 iOS 客户端",
+      "localizedDescription": "INSAV 是 insav 的第三方原生 iOS 客户端（SwiftUI，iOS 16+，iPhone / iPad 通用）。四个站点（主站 / 无码站 / 动漫站 / 4K 站）完整适配，浏览 / 搜索 / 系统原生播放（画中画、AirPlay）/ 外部播放器 / 整部下载离线观看 / 登录、收藏、订阅。安装包是未签名的，由商店用你自己的 Apple ID 签名。",
+      "iconURL": "https://raw.githubusercontent.com/ios151/Insav-releases/main/icon.png",
+      "tintColor": "#E11D48",
+      "category": "entertainment",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "buildVersion": "2",
+          "date": "2026-10-27T07:45:44Z",
+          "localizedDescription": "• 换了新图标，桌面显示名改成 INSAV\n• 下载：调大了下载的连接数（实际速度看网络）；下好的片子在「我的 → 下载」里离线播放\n• 详情里没有真实字幕文件的条目，不再白请求一次字幕\n• 其余功能同 build 1：四个站点完整适配、浏览 / 搜索、内置和外部播放器、登录 / 收藏 / 订阅 / 兑换码",
+          "downloadURL": "https://github.com/ios151/Insav-releases/releases/download/v1.0.0-2/Insav-unsigned.ipa",
+          "size": 901635,
+          "minOSVersion": "16.0"
+        },
+        {
+          "version": "1.0.0",
+          "buildVersion": "1",
+          "date": "2026-10-27T07:11:16Z",
+          "localizedDescription": "• 首个版本：四个站点（主站、无码站、动漫站、4K 站）完整适配，启动时选站点，进去之后顶栏一键切换\n• 浏览、搜索、演员 / 片商 / 主题、影评；内置播放器（画中画、字幕）和外部播放器\n• 下载：详情页一键下载整部片，之后不联网也能看（离线文件只能在 App 里播放）\n• 登录 / 注册、收藏、订阅、兑换码",
+          "downloadURL": "https://github.com/ios151/Insav-releases/releases/download/v1.0.0-1/Insav-unsigned.ipa",
+          "size": 1241522,
+          "minOSVersion": "16.0"
+        }
+      ],
+      "appPermissions": {
+        "entitlements": [],
+        "privacy": {}
+      }
+    }
+  ],
+  "news": []
+}
