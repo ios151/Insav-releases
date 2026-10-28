@@ -24,6 +24,15 @@
       "versions": [
         {
           "version": "1.0.0",
+          "buildVersion": "3",
+          "date": "2026-10-28T00:04:57Z",
+          "localizedDescription": "• 下载：新增「App 内下载」——片子存进「文件」App（我的 iPhone → INSAV），下完自动转成 MP4，可以直接预览，也能交给 Infuse、VLC 这类播放器；转不了或空间不够时保留原文件，设置里可以关掉自动转换。「下载方式」选「自动」时，这台设备上系统的后台下载用不了就自动改用它（要保持 App 在前台）\n• 下载失败时说清楚原因，失败的那一行可以复制诊断信息\n• 详情页新增「线路检测」按钮（在收藏、下载旁边）：播不了或很慢时，一键看是站点接口、VIP 令牌源还是视频服务器哪一段不通\n• VIP 内容：每次点播放都先取最新的令牌；「我的 → VIP 令牌源」里可以立即刷新，并显示每个源的结果\n• 修正了「用 VidHub 播放」的跳转\n• 其余功能同 build 2",
+          "downloadURL": "https://github.com/ios151/Insav-releases/releases/download/v1.0.0-3/Insav-unsigned.ipa",
+          "size": 1152370,
+          "minOSVersion": "16.0"
+        },
+        {
+          "version": "1.0.0",
           "buildVersion": "2",
           "date": "2026-10-27T07:45:44Z",
           "localizedDescription": "• 换了新图标，桌面显示名改成 INSAV\n• 下载：调大了下载的连接数（实际速度看网络）；下好的片子在「我的 → 下载」里离线播放\n• 详情里没有真实字幕文件的条目，不再白请求一次字幕\n• 其余功能同 build 1：四个站点完整适配、浏览 / 搜索、内置和外部播放器、登录 / 收藏 / 订阅 / 兑换码",
