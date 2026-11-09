@@ -23,6 +23,15 @@
       "category": "entertainment",
       "versions": [
         {
+          "version": "1.2.0",
+          "buildVersion": "4",
+          "date": "2026-11-09T20:55:27Z",
+          "localizedDescription": "• 新增 4 个外部片源（选站页「更多片源」里）：各有栏目首页、搜索、详情和多线路播放，收藏和播放进度存在本机；暂时不支持下载和字幕\n• 新增聚合搜索：同一个关键词同时搜所有站点和片源，按来源分组显示\n• 外部播放器新增 Lumenic；Lumenic 和 SenPlayer 播放需要请求头的线路时会自动带上\n• 选站页重新排版；「我的」页改成短列表，设置点进去再看，「刷新令牌」放在最上面\n• 修复 VIP 令牌源在跨日 / 跨月后一直提示「正在续期」的问题（旧版本从 11 月 10 日起会遇到，升级后自动恢复）；去掉已经不再维护的第二个令牌源\n• 界面上的说明文字更简短\n• 其余功能同 1.0.0 (3)",
+          "downloadURL": "https://github.com/ios151/Insav-releases/releases/download/v1.2.0-4/Insav-unsigned.ipa",
+          "size": 1523510,
+          "minOSVersion": "16.0"
+        },
+        {
           "version": "1.0.0",
           "buildVersion": "3",
           "date": "2026-10-28T00:04:57Z",
